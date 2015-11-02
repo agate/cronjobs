@@ -1,7 +1,20 @@
 GEM
-  remote: https://ruby.taobao.org/
+  remote: https://rubygems.org/
   specs:
     chronic (0.10.2)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    mime-types (2.6.2)
+    netrc (0.10.3)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     whenever (0.9.4)
       chronic (>= 0.6.3)
 
@@ -9,7 +22,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rest-client
   whenever
 
 BUNDLED WITH
-   1.10.3
+   1.10.6
