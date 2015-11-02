@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+puts Time.now
+puts '============================='
+
+require File.expand_path('../../../lib/request', __FILE__)
+
+request = Request.new(:smzdm)
+request.get("http://www.smzdm.com/user/qiandao/jsonp_checkin")

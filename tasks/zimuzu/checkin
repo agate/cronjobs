@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+puts Time.now
+puts '============================='
+
+require File.expand_path('../../../lib/request', __FILE__)
+
+request = Request.new(:zimuzu)
+request.get("http://www.zimuzu.tv/user/sign")
+sleep 25
+request.get("http://www.zimuzu.tv/user/sign/dosign")

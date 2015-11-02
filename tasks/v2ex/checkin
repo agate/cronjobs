@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+puts Time.now
+puts '============================='
+
+require File.expand_path('../../../lib/request', __FILE__)
+
+BASE_URL = 'http://v2ex.com'
+
+request = Request.new(:v2ex)
+
+body = request.get("#{BASE_URL}/mission/daily", referer: BASE_URL)
+redeem_path = body.match(/\/mission\/daily\/redeem\?once=\d+/)[0]
+
+request.get("#{BASE_URL}/#{redeem_path}", referer: "#{BASE_URL}/mission/daily")
+request.get("#{BASE_URL}/mission/daily", referer: "#{BASE_URL}/mission/daily")
