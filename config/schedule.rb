@@ -19,15 +19,18 @@
 
 # Learn more: http://github.com/javan/whenever
 
-require 'yaml'
+job_type :cronjob_run,  "cd :path && bundle exec :task :output"
 
 BASE_DIR = File.expand_path('../..', __FILE__)
-ENABLED_TASKS = YAML.load_file("#{BASE_DIR}/enabled_tasks")
+TASK_DIRS = Dir.glob("#{BASE_DIR}/tasks/*").select do |x|
+  File.directory? x
+end
 
 every 3.hours do
-  ENABLED_TASKS.each do |site|
-    dir = "#{BASE_DIR}/tasks/#{site}"
-    log = "#{BASE_DIR}/tasks/#{site}/crontab.log"
-    command "#{dir}/checkin >> #{log} 2>&1"
+  TASK_DIRS.each do |task_dir|
+    dir = task_dir.sub("#{BASE_DIR}/", '')
+    log = "#{dir}/crontab.log"
+    script = "#{dir}/run"
+    cronjob_run script, output: log
   end
 end
