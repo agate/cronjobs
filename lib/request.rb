@@ -15,7 +15,11 @@ class Request
   end
 
   def get(url, ext_headers={})
-    RestClient.get(url, ext_headers).to_str.force_encoding(Encoding::UTF_8)
+    puts "REQUEST:"
+    puts "  URL: #{url}"
+    puts "  HEADER: #{ext_headers}"
+    res = RestClient.get(url, headers(ext_headers))
+    res.to_str.force_encoding(Encoding::UTF_8)
   end
 
   private
